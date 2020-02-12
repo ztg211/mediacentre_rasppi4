@@ -1,0 +1,26 @@
+# common
+TZ=Europe/London
+PUID=1000
+PGID=1000
+TRANS_RPC_PORT=9091
+FLEXGET_WEB_PORT=5050
+
+
+# Transmission mount points
+URL_HOST_TRANS_DOWNLOAD=/mnt/extdisk/Downloads
+URL_HOST_TRANS_WATCH=/mnt/extdisk/watch
+URL_HOST_TRANS_CONFIG=/mnt/extdisk/config/transmission
+
+# Flexget mount points
+URL_HOST_FLEXGET_CONFIG=/mnt/extdisk/config/flexget
+
+# Plex mount points
+URL_HOST_PLEX_CONFIG=/mnt/extdisk/config/plex
+
+# Plex media mount points
+# Add as many as needed for various folders. each will need to be
+# added as a volume in the docker-compose file to make it accessible
+URL_HOST_PLEX_MEDIA_TV=/mnt/extdisk/Downloads/TV
+URL_HOST_PLEX_MEDIA_TV_NAS=/mnt/nas/Shared Videos/TV Shows
+URL_HOST_PLEX_MEDIA_MOVIES=/mnt/extdisk/Downloads/Movies
+URL_HOST_PLEX_MEDIA_MOVIES_NAS=/mnt/nas/Shared Videos/Films

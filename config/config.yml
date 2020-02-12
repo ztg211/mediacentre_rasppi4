@@ -1,0 +1,23 @@
+# Sample config file with all individual variables in the variables.yml file
+variables: variables.yml
+
+templates:
+  transmissionrpc:
+    transmission:
+      host: '{? transmission.host ?}'
+      port: '{? transmission.port ?}'
+      username: '{? transmission.usr ?}'
+      password: '{? transmission.pwd ?}'
+
+tasks:
+  #1 Read RSS Feed and add items to transmission
+  rss-add-showrss:
+    rss:
+      url: '{? rssfeeds.showrss ?}'
+    all_series: yes
+    template: transmissionrpc
+
+# will not start scheduler so tasks must be executed from command line
+schedules: no
+
+web_server: yes

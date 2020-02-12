@@ -1,0 +1,55 @@
+version: '2'
+
+services:
+  transmission:
+    build:
+      context: .
+      dockerfile: dockerfile/transmission/Dockerfile
+      args:
+        - PUID=${PUID}
+    image: transmission_pi
+    container_name: transmission
+    env_file:
+      - envs/buildargs
+    volumes:
+      - ${URL_HOST_TRANS_CONFIG}:/home/transmission/.config/transmission-daemon
+      - ${URL_HOST_TRANS_WATCH}:/home/transmission/watch
+      - ${URL_HOST_TRANS_DOWNLOAD}:/home/transmission/downloads
+    ports:
+      - ${TRANS_RPC_PORT}:9091
+    restart: unless-stopped
+
+  flexget:
+    build:
+      context: .
+      dockerfile: dockerfile/flexget/Dockerfile
+      args:
+        - PUID=${PUID}
+    image: flexget_pi
+    container_name: flexget
+    env_file:
+      - envs/buildargs
+    volumes:
+        - ${URL_HOST_FLEXGET_CONFIG}:/home/flexget/.flexget
+        - ${URL_HOST_TRANS_WATCH}:/home/flexget/torrents
+        - ${URL_HOST_TRANS_DOWNLOAD}:/home/flexget/downloads
+    ports:
+      - ${FLEXGET_WEB_PORT}:5050
+    restart: unless-stopped
+
+  plex:
+    image: linuxserver/plex
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - VERSION=docker
+    volumes:
+      - ${URL_HOST_PLEX_CONFIG}:/config
+      - ${URL_HOST_PLEX_MEDIA_TV}:/tv
+      - ${URL_HOST_PLEX_MEDIA_TV_NAS}:/tv_nas
+      - ${URL_HOST_PLEX_MEDIA_MOVIES}:/movies
+      - ${URL_HOST_PLEX_MEDIA_MOVIES_NAS}:/movies_nas
+    restart: unless-stopped
+
