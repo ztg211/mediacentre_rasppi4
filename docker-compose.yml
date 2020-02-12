@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: dockerfile/transmission/Dockerfile
       args:
-        - PUID=${PUID}
+        - PUID=${TRANS_PUID}
     image: transmission_pi
     container_name: transmission
     env_file:
@@ -24,7 +24,7 @@ services:
       context: .
       dockerfile: dockerfile/flexget/Dockerfile
       args:
-        - PUID=${PUID}
+        - PUID=${FLEX_PUID}
     image: flexget_pi
     container_name: flexget
     env_file:
@@ -42,8 +42,8 @@ services:
     container_name: plex
     network_mode: host
     environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
+      - PUID=${PLEX_PUID}
+      - PGID=${PLEX_PGID}
       - VERSION=docker
     volumes:
       - ${URL_HOST_PLEX_CONFIG}:/config

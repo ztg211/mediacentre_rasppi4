@@ -1,9 +1,17 @@
 # common
 TZ=Europe/London
-PUID=1000
-PGID=1000
+
+# Local ports
 TRANS_RPC_PORT=9091
 FLEXGET_WEB_PORT=5050
+
+# User/Groups
+PLEX_PUID=1000
+PLEX_PGID=1000
+
+TRANS_PUID=1000
+
+FLEX_PUID=1000
 
 
 # Transmission mount points
