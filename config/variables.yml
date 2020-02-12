@@ -1,0 +1,13 @@
+# url for show rss feed (or any rss feed for flexget to read from)
+rssfeeds:
+  showrss: http://showrss.info/......
+
+# credentials for flexget to log in to transmission
+# suggest changing these here and also setting the following params in settings.json on first use
+# "rpc-username": "transmission-user",
+# "rpc-password": "password123",
+transmission:
+  host: transmission # when containerised use the transmission container name else IP address
+  port: 9091 # default web address
+  usr: transmission-user # Web interface user
+  pwd: password123 # Web interface user password
